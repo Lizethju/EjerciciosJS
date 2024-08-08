@@ -1,9 +1,8 @@
+
 const elementoContenedor = [
-  { documento: 1031154, nombre: "Lizeth", telefono: "310451", edad: 28 },
-  { documento: 1031155, nombre: "Esteban", telefono: "315236", edad: 32 },
+  { cedula: 1011, nombre: "Lizeth", telefono: "310451", edad: 28 },
+  { dedula: 1031, nombre: "Esteban", telefono: "315236", edad: 32 },
 ];
-
-
 
 function registrar() {
   const cedula = document.getElementById("cedula").value;
@@ -16,29 +15,73 @@ function registrar() {
     nombre: nombre,
     telefono: telefono,
     edad: edad,
-  };
+  }
+
+
+if(validarSiUsuarioExiste(cedula)){
+  alert ("Usuario ya existe")
+}else{
+  alert("Usuario nuevo")
+}
+
 
   let ingresoUser = JSON.parse(localStorage.getItem("ingresoUser")) || [];
   ingresoUser.push(elementoUser);
-
-  /* Siempre si quiero que los valores queden en el storas, tengo que setearlo con setItem, lo parceo con JSon y lo convierto en convierte un objeto o valor de JavaScript en una cadena de texto JSON*/
+/* Siempre si quiero que los valores queden en  localStorage, tengo que setearlos con setItem, lo parceo con JSon y lo convierto en  un objeto o valor de JavaScript en una cadena de texto JSON*/
   localStorage.setItem("ingresoUser", JSON.stringify(ingresoUser));
 
-  alert("Guardado correctamente");
+  /*alert("Guardado correctamente");*/
+
+}
+
+
+function validarSiUsuarioExiste(cedulaNueva){
+
+  let ingresoUser = JSON.parse(localStorage.getItem("ingresoUser") || "[]");
+
+if (ingresoUser.find(usuario => {usuario.cedula == cedulaNueva})){
+  return true;
+}else{
+  return false;
+}
 
 
 }
 
-let usuario = elementoContenedo.find(u => u.cedula === cedula);
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+let usuario = elementoContenedor.find((u) => u.cedula === cedula);
 
 if (!usuario) {
-    usuario = { cedula, nombre, telefono, edad };
-    elementoContenedo.push(usuario);
+  usuario = { cedula, nombre, telefono, edad };
+  elementoContenedor.push(usuario);
+} else if (registrar == elementoContenedor) {
+  alert("documento correcto");
+} else registrar != elementoContenedor;
+{
+  alert("Requiere de registro");
 }
+
+let documentos = (1031154, 1031155);
+
+*/
 
 /* Se declara una variable.*/
 
-let usuarioSelecionado = "";
+/*let usuarioSelecionado = "";
 
 function selecionDocumento(usuario) {
   selecionDocumento = usuario.options[usuario.selectedIndex];
@@ -59,4 +102,9 @@ function guardarUsuarios() {
     alert("No se encuentra registrado");
   }
 }
+
+*/
+
+
+
 
