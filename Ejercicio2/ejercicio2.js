@@ -24,7 +24,6 @@ if(validarSiUsuarioExiste(cedula)){
   alert("Usuario nuevo")
 }
 
-
   let ingresoUser = JSON.parse(localStorage.getItem("ingresoUser")) || [];
   ingresoUser.push(elementoUser);
 /* Siempre si quiero que los valores queden en  localStorage, tengo que setearlos con setItem, lo parceo con JSon y lo convierto en  un objeto o valor de JavaScript en una cadena de texto JSON*/
@@ -34,22 +33,39 @@ if(validarSiUsuarioExiste(cedula)){
 
 }
 
-
 function validarSiUsuarioExiste(cedulaNueva){
 
+  console.log(`cedula ${cedulaNueva}`);
   let ingresoUser = JSON.parse(localStorage.getItem("ingresoUser") || "[]");
 
-if (ingresoUser.find(usuario => {usuario.cedula == cedulaNueva})){
+if (ingresoUser.find(usuario => usuario.cedula == cedulaNueva)){
   return true;
 }else{
   return false;
 }
 
-
 }
 
 
+function validarEdad (edad){
 
+
+  if(edad >= 18){
+    alert('Eres mayor de edad');
+  }else{
+    alert('Eres menor de edad');
+  }
+  
+  let ingresoUser = JSON.parse(localStorage.getItem("ingresoUser")) || [];
+
+  ingresoUser.push({
+    edad: edad,
+    resultado: edad >= 18 ? 'Mayor de edad' : 'Menor de edad'
+  });
+  
+  localStorage.setItem("ingresoUser", JSON.stringify(ingresoUser));
+
+}
 
 
 
